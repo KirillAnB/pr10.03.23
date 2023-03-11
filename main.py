@@ -11,11 +11,14 @@ def car_paths(n: int, m: int) -> List[List[int]]:
     :return: Новую таблицу с посчитанным количеством маршрутов в каждую клетку
     """
     # Создаем и заполняем нолями "массив" n*m.
-    list_ = [[0] * m for i in range(n)]
+    list_ = [[0] * n for i in range(m)]
+    # В эти клетки можно попасть только одним маршрутом
     for i in range(n):
         list_[i][0] = 1
+    # В эти тоже только одним маршрутом
     for j in range(m):
         list_[0][j] = 1
+    # В остальные можно попасть из 3-х соседних
     for i in range(1, n):
         for j in range(1, m):
             list_[i][j] = list_[i][j - 1] + list_[i - 1][j] + list_[i - 1][j - 1]
